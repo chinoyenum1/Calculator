@@ -1,0 +1,87 @@
+html{
+    background-color: whitesmoke;
+}
+
+body{
+    box-sizing: border-box;
+    background-color: rgb(128, 203, 233);
+    width: 25%;
+    /* height: 533px; */
+    margin: 50px auto;
+    box-shadow: 3px 3px 50px 3px rgb(87, 86, 86);
+}
+
+.main-container{
+    display: flex;
+    flex-direction: column;
+}
+
+.display{
+    margin-top: 0px;
+    display: flex;
+    flex-direction: column;
+}
+
+.name{
+    padding: 0px 20px;
+    color: whitesmoke;
+    font-family: 'Chilanka', 'Comic Sans MS', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+input#expression{
+    padding: 5px 10px;
+    font-size: 1.5em;
+    font-weight: bold;
+    text-align: right;
+    height: 2em;
+    border: none;
+    box-sizing: border-box;
+    background-color: rgb(128, 203, 233);
+    color: rgb(224, 222, 222);
+}
+
+
+input#result{
+    padding: 20px 10px 2px;
+    font-size: 3em;
+    font-weight: bold;
+    text-align: right;
+    color: whitesmoke;
+    height: 2em;
+    border: none;
+    box-sizing: border-box;
+    background-color: rgb(128, 203, 233);
+}
+
+.buttons{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 3em);
+    gap: 3px;
+    padding: 3px;
+}
+
+.number, .operator, .control, #equal, #plus-minus{
+    border: none;
+    border-radius: 10px;
+    box-sizing: border-box;
+    font-weight: bolder;
+    font-size: 1.5em;
+    color: whitesmoke;
+}
+
+.number{
+    background-color: rgb(23, 119, 156);
+}
+
+.operator, .control, #equal, #plus-minus{
+    background-color: rgb(63, 160, 199);
+}
+
+.control{
+    font-size: 1em;
+}
+
+.number:hover, .operator:hover, .control:hover, #equal:hover{
+    background-color: rgb(161, 212, 233);
+}
