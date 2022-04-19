@@ -9,35 +9,74 @@ let dot = document.querySelector('#dot');
 let del = document.querySelector('#delete');
 let plusMinus = document.querySelector('#plus-minus');
 let expressionList = [];
+let numKeys = ["0", "1", "2", "3", "4", "5", "6", "7", "8", "9", "."];
+let operatorKeys = ["/", "x", "-", "+"];
 
 
 
 //Nubmber keys listener event code
 for (let number of numberButtons) {
-    expression.value = ``;
+    //expression.value = ``;
     number.addEventListener('click', ()=>{ 
-        result.value += number.value;
-        expression.value += number.value
+        inputNumbers(number.value);
     });
 }
+
+function inputNumbers(number) {
+    result.value += number;
+    expression.value += number;
+}
+
+
+//keyboard listener events
+document.addEventListener('keydown', (e)=>{
+    if(numKeys.indexOf(e.key) !== -1)
+    inputNumbers(e.key);
+    if (operatorKeys.indexOf(e.key) !== -1) {
+        inputOperator(e.key);
+    }
+    if (e.key === "Enter") {
+        calculateExpression()
+    }
+    if (e.key === ".") {
+        inputDot()
+    }
+    if (e.key === "Backspace") {
+        deleteNumber();
+    }
+    if (e.key === "Escape" || e.key === "Delete") {
+        clearScreen();
+    }
+})
+
+
 
 //Operands event code
 for (const operator of operators) {
     operator.addEventListener('click', ()=>{
-        expression.value = `${result.value} ${operator.value} `;
-        if (expressionList.length == 0) {
-            expressionList.push(`${result.value}`);
-        } 
-        expressionList.push(`${operator.value}`);
-        result.value = ``;
-        dot.disabled = false;
+        inputOperator(operator.value);
     });
+}
+
+function inputOperator(operator) {
+    expression.value = `${result.value} ${operator} `;
+    if (expressionList.length == 0) {
+        expressionList.push(`${result.value}`);
+    }
+    expressionList.push(`${operator}`);
+    result.value = ``;
+    dot.disabled = false;
+    operator.disabled = false;
 }
 
 //calculation of the operation
 equals.addEventListener('click', ()=>{
+    calculateExpression();
+});
+
+function calculateExpression() {
     expressionList.push(result.value);
-    let firstNumber = Number(expressionList[0])
+    let firstNumber = Number(expressionList[0]);
     let secondNumber = Number(expressionList[2]);
     let answer = '';
 
@@ -55,20 +94,20 @@ equals.addEventListener('click', ()=>{
             answer = division(firstNumber, secondNumber);
             break;
         default:
-            answer = 'Err'
+            answer = 'Err';
             break;
     }
 
     result.value = answer;
-    if(answer !== 'Err') {
+    if (answer !== 'Err') {
         expressionList = [answer];
-    }else{
+    } else {
         expressionList = [];
         expression.value = answer;
         result.value = ``;
     }
-    console.log(expressionList)
-});
+    console.log(expressionList);
+}
 
 function addition(number1, number2) {
     let ans = number1 + number2;
@@ -106,11 +145,10 @@ clear.addEventListener('click', ()=>{
     clearScreen();
 });
 
-//clear button function
+//clearAll button function
 clearAll.addEventListener('click', ()=>{
     clearScreen();
 });
-
 
 function clearScreen() {
     expression.value = ``;
@@ -121,25 +159,36 @@ function clearScreen() {
 
 //delete button function
 del.addEventListener('click', ()=>{
+    deleteNumber();
+});
+
+function deleteNumber() {
     let val = result.value;
     var newstr = val.replace(val[val.length - 1], "");
     result.value = newstr;
     expression.value = newstr;
-    
-});
+}
 
 //dot button function
 dot.addEventListener('click', ()=>{
-    dot.disabled = true;   
+    inputDot();   
 });
 
+function inputDot() {
+    dot.disabled = true;
+}
+
+//plus/minus button function
 plusMinus.addEventListener('click', ()=>{
-    if (result.value[0] !== '-') {
-        result.value = `-${result.value}`;
+    if (result.value != '') {
+        result.value = result.value * -1;
         expression.value = result.value;
     } else {
-        result.value = `${result.value}`;
+        result.value = '-';
+        expression.value = result.value;
     }
-    
-    
 });
+
+
+
+
