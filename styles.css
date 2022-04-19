@@ -4,7 +4,7 @@ html{
 
 body{
     box-sizing: border-box;
-    background-color: rgb(128, 203, 233);
+    background-color: dimgray;
     width: 25%;
     /* height: 533px; */
     margin: 50px auto;
@@ -36,7 +36,7 @@ input#expression{
     height: 2em;
     border: none;
     box-sizing: border-box;
-    background-color: rgb(128, 203, 233);
+    background-color: dimgray;
     color: rgb(224, 222, 222);
 }
 
@@ -50,7 +50,7 @@ input#result{
     height: 2em;
     border: none;
     box-sizing: border-box;
-    background-color: rgb(128, 203, 233);
+    background-color: dimgray;
 }
 
 .buttons{
@@ -71,11 +71,12 @@ input#result{
 }
 
 .number{
-    background-color: rgb(23, 119, 156);
+    
+    background-color: rgb(68, 67, 67);
 }
 
 .operator, .control, #equal, #plus-minus{
-    background-color: rgb(63, 160, 199);
+    background-color: rgb(133, 131, 131);
 }
 
 .control{
@@ -83,5 +84,5 @@ input#result{
 }
 
 .number:hover, .operator:hover, .control:hover, #equal:hover{
-    background-color: rgb(161, 212, 233);
+    background-color: rgb(196, 192, 192);
 }
